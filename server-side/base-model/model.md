@@ -3,38 +3,31 @@
 ## Location
 `src/models/BaseModel.ts`
 
-## Schema Fields
+## Schema
 
-Every model includes these base fields:
+```typescript
+export const baseSchemaFields = {
+  code: { type: String, required: true, unique: true },
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+  updatedBy: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+};
+```
 
-| Field | Type | Required | Unique | Default | Description |
-|-------|------|----------|--------|---------|-------------|
-| code | String | Yes | Yes | - | Unique identifier string |
-| createdBy | ObjectId | No | No | `null` | Ref → User (creator) |
-| updatedBy | ObjectId | No | No | `null` | Ref → User (last updater) |
+## Fields
+
+| Field | Type | Required | Unique | Default | Ref |
+|-------|------|----------|--------|---------|-----|
+| code | String | Yes | Yes | - | - |
+| createdBy | ObjectId | No | No | `null` | User |
+| updatedBy | ObjectId | No | No | `null` | User |
 
 ## Usage
 
-```typescript
-import { baseSchemaFields } from '../BaseModel';
+All models spread this into their schema:
 
+```typescript
 const mySchema = new Schema<IMyEntity>({
   ...baseSchemaFields,
   // entity-specific fields
 });
-```
-
-## Interface
-
-```typescript
-// src/interface/BaseModel.ts
-interface IBaseEntity extends mongoose.Document {
-  id: string;
-  __v: number;
-  code: string;
-  createdBy?: Types.ObjectId;
-  updatedBy?: Types.ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
-}
 ```

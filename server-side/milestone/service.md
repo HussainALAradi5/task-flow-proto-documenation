@@ -3,12 +3,34 @@
 ## Location
 `src/services/project/MilestoneService.ts`
 
-## Methods
+## Function Signatures
 
-| Method | Signature | Description |
-|--------|-----------|-------------|
-| `create` | `(data: Partial<IMilestone>): Promise<IMilestone>` | Create milestone, log event |
-| `update` | `(id, data): Promise<IMilestone \| null>` | Update milestone, log event |
-| `softDelete` | `(id): Promise<IMilestone \| null>` | Deactivate milestone, log event |
-| `buildProjectFilter` | `(projectId): QueryFilter<IMilestone>` | Filter by project |
-| `buildProjectUserFilter` | `(projectId, userId): QueryFilter<IMilestone>` | Filter by project + creator |
+```typescript
+class MilestoneServiceClass extends BaseService<IMilestone> {
+  constructor();
+  async create(data: Partial<IMilestone>): Promise<IMilestone>;
+  async update(id: string, data: Partial<IMilestone>): Promise<IMilestone | null>;
+  async softDelete(id: string): Promise<IMilestone | null>;
+  buildProjectFilter(projectId: string): QueryFilter<IMilestone>;
+  buildProjectUserFilter(projectId: string, userId: string): QueryFilter<IMilestone>;
+}
+```
+
+## Business Logic
+
+| Method | Logic |
+|--------|-------|
+| `create` | Create milestone, log event "Milestone created" |
+| `update` | Update milestone, log event "Milestone updated" |
+| `softDelete` | Set isActive: false, log event "Milestone deactivated" |
+| `buildProjectFilter` | Build query filter by projectId |
+| `buildProjectUserFilter` | Build query filter by projectId + createdBy |
+
+## Validation
+
+Handled by Zod schemas in `src/validations/milestone.schema.ts`:
+
+```typescript
+createMilestoneSchema = { body: { name: string(1-200), projectId: string } }
+updateMilestoneSchema = { body: { name?: string(1-200) }, params: { id: string } }
+```

@@ -3,14 +3,30 @@
 ## Location
 `src/services/team/TeamService.ts`
 
-## Methods
+## Function Signatures
 
-| Method | Signature | Description |
-|--------|-----------|-------------|
-| `create` | `(data: Partial<ITeam>): Promise<ITeam>` | Create team, log event |
-| `update` | `(id, data): Promise<ITeam \| null>` | Update team, log event |
-| `softDelete` | `(id): Promise<ITeam \| null>` | Deactivate team, log event |
+```typescript
+class TeamServiceClass extends BaseService<ITeam> {
+  constructor();
+  async create(data: Partial<ITeam>): Promise<ITeam>;
+  async update(id: string, data: Partial<ITeam>): Promise<ITeam | null>;
+  async softDelete(id: string): Promise<ITeam | null>;
+}
+```
 
 ## Business Logic
-- Event logged on: create, update, deactivate
-- Inherits: getAll, getById, getAllPaginated from BaseService
+
+| Method | Logic |
+|--------|-------|
+| `create` | Create team, log event "Team created" |
+| `update` | Update team, log event "Team updated" |
+| `softDelete` | Set isActive: false, log event "Team deactivated" |
+
+## Validation
+
+Handled by Zod schemas in `src/validations/team.schema.ts`:
+
+```typescript
+createTeamSchema = { body: { name: string(1-100), description?: string } }
+updateTeamSchema = { body: { name?: string(1-100), description?: string }, params: { id: string } }
+```

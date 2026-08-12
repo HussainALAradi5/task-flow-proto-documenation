@@ -3,10 +3,28 @@
 ## Location
 `src/models/user/User.ts`
 
-## Schema
+## Schema (Inherits BaseModel)
+
+```typescript
+const userSchema = new Schema<IUser>({
+  ...baseSchemaFields,
+  userName: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  mobileNumber: { type: String, default: '' },
+  teamId: { type: Schema.Types.ObjectId, ref: 'Team', default: null },
+  role: createMongooseEnum(UserRole, UserRole.MEMBER),
+  isActive: { type: Boolean, default: true },
+}, { timestamps: true });
+```
+
+## Fields
 
 | Field | Type | Required | Unique | Default | Ref |
 |-------|------|----------|--------|---------|-----|
+| code | String | Yes | Yes | - | - |
+| createdBy | ObjectId | No | No | `null` | User |
+| updatedBy | ObjectId | No | No | `null` | User |
 | userName | String | Yes | Yes | - | - |
 | password | String | Yes | No | - | - |
 | email | String | Yes | Yes | - | - |
@@ -15,11 +33,6 @@
 | role | String | No | No | `Member` | - |
 | isActive | Boolean | No | No | `true` | - |
 
-## Enum
-```typescript
-enum UserRole {
-  ADMIN = 'Admin',
-  LEADER = 'Leader',
-  MEMBER = 'Member'
-}
-```
+## Indexes
+- `userName` (unique)
+- `email` (unique)

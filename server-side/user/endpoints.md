@@ -1,25 +1,30 @@
 # User Endpoints
 
+## Location
+`src/routes/user/authRoutes.ts`, `src/routes/user/userRoutes.ts`
+
 ## Public (No Auth)
 
-| Method | Endpoint | Body | Response |
-|--------|----------|------|----------|
-| `POST` | `/users/signup` | `{ userName, email, password, mobileNumber? }` | `{ token, data: User }` |
-| `POST` | `/users/login` | `{ email, password }` | `{ token, data: User }` |
+| Method | Endpoint | Validation | Description |
+|--------|----------|------------|-------------|
+| `POST` | `/users/signup` | `signupSchema` | Register new user |
+| `POST` | `/users/login` | `loginSchema` | Authenticate user |
 
 ## Protected (Auth Required)
 
-| Method | Endpoint | Roles | Body | Description |
-|--------|----------|-------|------|-------------|
+| Method | Endpoint | Roles | Validation | Description |
+|--------|----------|-------|------------|-------------|
 | `GET` | `/users/profile` | All | - | Get own profile |
-| `PATCH` | `/users/profile` | All | `{ userName?, email?, mobileNumber? }` | Update own profile |
+| `PATCH` | `/users/profile` | All | `updateUserSchema` | Update own profile |
 | `GET` | `/users` | Admin | - | List all users |
 | `GET` | `/users/:id` | Admin | - | Get user by ID |
-| `PATCH` | `/users/:id` | Admin | `{ userName?, email?, mobileNumber? }` | Update any user |
+| `PATCH` | `/users/:id` | Admin | `updateUserSchema` | Update any user |
 | `DELETE` | `/users/:id` | Admin | - | Soft delete user |
-| `PATCH` | `/users/:id/role` | Admin | `{ role }` | Change user role |
+| `PATCH` | `/users/:id/role` | Admin | `updateRoleSchema` | Change user role |
 
 ## Security Rules
-- User can only edit their own profile
+
+- User can only view/edit their own profile
 - Only Admin can view/edit/delete other users
 - Only Admin can change roles
+- Passwords never returned in responses

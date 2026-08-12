@@ -31,22 +31,22 @@ task-flow-proto/
 
 ### Server-Side (Express.js + MongoDB)
 
-Each entity has its own folder with service, model, and endpoints documentation.
+Each entity has 5 documentation files: model, service, endpoints, enums, interfaces.
 
-| Entity | Service | Model | Endpoints |
-|--------|---------|-------|-----------|
-| [BaseModel](server-side/base-model/service.md) | Generic CRUD, pagination | Schema fields, interface | - |
-| [User](server-side/user/service.md) | Auth, roles, password hashing | Schema, enums | Signup, login, profile, CRUD |
-| [Team](server-side/team/service.md) | CRUD with event logging | Schema | Create, list, update, delete |
-| [Project](server-side/project/service.md) | CRUD + auto role promotion | Schema | Create, list, update, delete |
-| [Task](server-side/task/service.md) | CRUD + filter builders | Schema, status/priority enums | CRUD by project/milestone |
-| [Milestone](server-side/milestone/service.md) | CRUD with event logging | Schema | CRUD by project |
-| [Comment](server-side/comment/service.md) | CRUD with ownership checks | Schema | CRUD by task |
-| [Event](server-side/event/service.md) | Audit log helper | Schema, entity types | List, create, update |
+| Entity | Model | Service | Endpoints | Enums | Interfaces |
+|--------|-------|---------|-----------|-------|------------|
+| BaseModel | [model](server-side/base-model/model.md) | [service](server-side/base-model/service.md) | - | - | - |
+| User | [model](server-side/user/model.md) | [service](server-side/user/service.md) | [endpoints](server-side/user/endpoints.md) | [enums](server-side/user/enums.md) | [interfaces](server-side/user/interfaces.md) |
+| Team | [model](server-side/team/model.md) | [service](server-side/team/service.md) | [endpoints](server-side/team/endpoints.md) | [enums](server-side/team/enums.md) | [interfaces](server-side/team/interfaces.md) |
+| Project | [model](server-side/project/model.md) | [service](server-side/project/service.md) | [endpoints](server-side/project/endpoints.md) | [enums](server-side/project/enums.md) | [interfaces](server-side/project/interfaces.md) |
+| Task | [model](server-side/task/model.md) | [service](server-side/task/service.md) | [endpoints](server-side/task/endpoints.md) | [enums](server-side/task/enums.md) | [interfaces](server-side/task/interfaces.md) |
+| Milestone | [model](server-side/milestone/model.md) | [service](server-side/milestone/service.md) | [endpoints](server-side/milestone/endpoints.md) | [enums](server-side/milestone/enums.md) | [interfaces](server-side/milestone/interfaces.md) |
+| Comment | [model](server-side/comment/model.md) | [service](server-side/comment/service.md) | [endpoints](server-side/comment/endpoints.md) | [enums](server-side/comment/enums.md) | [interfaces](server-side/comment/interfaces.md) |
+| Event | [model](server-side/event/model.md) | [service](server-side/event/service.md) | [endpoints](server-side/event/endpoints.md) | [enums](server-side/event/enums.md) | [interfaces](server-side/event/interfaces.md) |
 
 ### Client-Side (Angular)
 
-Each entity has its own folder with service, model, and endpoints documentation.
+Each entity has service, model, and endpoints documentation.
 
 | Entity | Service | Model | Endpoints |
 |--------|---------|-------|-----------|
