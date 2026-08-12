@@ -29,15 +29,37 @@ task-flow-proto/
 
 ## Documentation
 
+### General
+
 | Document | Description |
 |----------|-------------|
 | [Architecture](ARCHITECTURE.md) | Folder structure, code patterns, conventions |
 | [Authentication](AUTH.md) | JWT flow, signup, login, token management |
 | [Roles & Permissions](ROLES.md) | Role-based access control matrix |
-| [API Reference](API.md) | REST API endpoints, request/response schemas |
-| [Data Models](MODELS.md) | MongoDB schemas, relationships, enums |
 | [Setup Guide](SETUP.md) | Installation, configuration, running locally |
 | [Changelog](CHANGELOG.md) | Version history |
+
+### Server-Side (Express.js + MongoDB)
+
+| Document | Description |
+|----------|-------------|
+| [Services](server-side/services/SERVICES.md) | Business logic, method signatures, event logging |
+| [Endpoints](server-side/endpoints/ENDPOINTS.md) | REST API reference, validation schemas |
+| [Models](server-side/models/MODELS.md) | MongoDB schemas, enums, relationships |
+
+### Client-Side (Angular)
+
+| Document | Description |
+|----------|-------------|
+| [Services](client-side/services/SERVICES.md) | Angular services, method signatures |
+| [Endpoints](client-side/endpoints/ENDPOINTS.md) | API mapping, interceptors, error handling |
+| [Models](client-side/models/MODELS.md) | TypeScript interfaces, request/response types |
+
+## Collections
+
+| File | Description |
+|------|-------------|
+| `TaskFlowProto.insomnia_export.json` | Insomnia collection for API testing |
 
 ## Quick Start
 

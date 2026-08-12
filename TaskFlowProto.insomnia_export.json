@@ -1,0 +1,482 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_source": "insomnia.desktop",
+  "__export_date": "2026-08-12T00:00:00.000Z",
+  "resources": [
+    {
+      "_id": "wrk_taskflow",
+      "_type": "workspace",
+      "name": "TaskFlow Proto API",
+      "description": "Trello-like task management API - Express.js + MongoDB"
+    },
+    {
+      "_id": "env_taskflow",
+      "_type": "environment",
+      "parentId": "wrk_taskflow",
+      "name": "Base Environment",
+      "data": {
+        "baseUrl": "http://localhost:5000/api",
+        "token": ""
+      }
+    },
+    {
+      "_id": "env_taskflow_auth",
+      "_type": "environment",
+      "parentId": "env_taskflow",
+      "name": "Auth Token",
+      "data": {
+        "token": ""
+      }
+    },
+    {
+      "_id": "folder_auth",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Auth"
+    },
+    {
+      "_id": "req_signup",
+      "_type": "request",
+      "parentId": "folder_auth",
+      "name": "Signup",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/users/signup",
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"userName\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"mobileNumber\": \"+1234567890\"\n}"
+      }
+    },
+    {
+      "_id": "req_login",
+      "_type": "request",
+      "parentId": "folder_auth",
+      "name": "Login",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/users/login",
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+      }
+    },
+    {
+      "_id": "req_profile",
+      "_type": "request",
+      "parentId": "folder_auth",
+      "name": "Get Profile",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/users/profile",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "folder_users",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Users"
+    },
+    {
+      "_id": "req_get_users",
+      "_type": "request",
+      "parentId": "folder_users",
+      "name": "Get All Users",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/users?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_user",
+      "_type": "request",
+      "parentId": "folder_users",
+      "name": "Get User by ID",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/users/USER_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_update_user",
+      "_type": "request",
+      "parentId": "folder_users",
+      "name": "Update User",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/users/USER_ID",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"mobileNumber\": \"+0987654321\"\n}"
+      }
+    },
+    {
+      "_id": "req_update_role",
+      "_type": "request",
+      "parentId": "folder_users",
+      "name": "Update User Role (Admin)",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/users/USER_ID/role",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"role\": \"Leader\"\n}"
+      }
+    },
+    {
+      "_id": "req_delete_user",
+      "_type": "request",
+      "parentId": "folder_users",
+      "name": "Delete User",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/users/USER_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "folder_teams",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Teams"
+    },
+    {
+      "_id": "req_create_team",
+      "_type": "request",
+      "parentId": "folder_teams",
+      "name": "Create Team",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/teams",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Frontend Team\",\n  \"description\": \"UI/UX developers\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_teams",
+      "_type": "request",
+      "parentId": "folder_teams",
+      "name": "Get My Teams",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/teams?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_team",
+      "_type": "request",
+      "parentId": "folder_teams",
+      "name": "Get Team by ID",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/teams/TEAM_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_update_team",
+      "_type": "request",
+      "parentId": "folder_teams",
+      "name": "Update Team",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/teams/TEAM_ID",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"description\": \"Updated description\"\n}"
+      }
+    },
+    {
+      "_id": "req_delete_team",
+      "_type": "request",
+      "parentId": "folder_teams",
+      "name": "Delete Team (Admin)",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/teams/TEAM_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "folder_projects",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Projects"
+    },
+    {
+      "_id": "req_create_project",
+      "_type": "request",
+      "parentId": "folder_projects",
+      "name": "Create Project",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/projects",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"TaskFlow Frontend\",\n  \"description\": \"Angular client app\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_projects",
+      "_type": "request",
+      "parentId": "folder_projects",
+      "name": "Get My Projects",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/projects?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_project",
+      "_type": "request",
+      "parentId": "folder_projects",
+      "name": "Get Project by ID",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/projects/PROJECT_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_update_project",
+      "_type": "request",
+      "parentId": "folder_projects",
+      "name": "Update Project",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/projects/PROJECT_ID",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"description\": \"Updated project description\"\n}"
+      }
+    },
+    {
+      "_id": "req_delete_project",
+      "_type": "request",
+      "parentId": "folder_projects",
+      "name": "Delete Project (Admin)",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/projects/PROJECT_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "folder_milestones",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Milestones"
+    },
+    {
+      "_id": "req_create_milestone",
+      "_type": "request",
+      "parentId": "folder_milestones",
+      "name": "Create Milestone",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/milestones",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Sprint 1\",\n  \"projectId\": \"PROJECT_ID\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_milestones",
+      "_type": "request",
+      "parentId": "folder_milestones",
+      "name": "Get Milestones by Project",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/milestones/project/PROJECT_ID?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_milestone",
+      "_type": "request",
+      "parentId": "folder_milestones",
+      "name": "Get Milestone by ID",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/milestones/MILESTONE_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_update_milestone",
+      "_type": "request",
+      "parentId": "folder_milestones",
+      "name": "Update Milestone",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/milestones/MILESTONE_ID",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Sprint 1 Updated\"\n}"
+      }
+    },
+    {
+      "_id": "req_delete_milestone",
+      "_type": "request",
+      "parentId": "folder_milestones",
+      "name": "Delete Milestone",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/milestones/MILESTONE_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "folder_tasks",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Tasks"
+    },
+    {
+      "_id": "req_create_task",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Create Task",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/tasks",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Implement login page\",\n  \"description\": \"Create Angular login component\",\n  \"status\": \"To Do\",\n  \"priority\": \"High\",\n  \"projectId\": \"PROJECT_ID\",\n  \"milestoneId\": \"MILESTONE_ID\",\n  \"assignTo\": \"USER_ID\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_tasks",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Get My Tasks",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/tasks?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_tasks_project",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Get Tasks by Project",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/tasks/project/PROJECT_ID?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_tasks_milestone",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Get Tasks by Milestone",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/tasks/milestone/MILESTONE_ID?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_task",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Get Task by ID",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/tasks/TASK_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_update_task",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Update Task",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/tasks/TASK_ID",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"In Progress\",\n  \"priority\": \"Critical\"\n}"
+      }
+    },
+    {
+      "_id": "req_delete_task",
+      "_type": "request",
+      "parentId": "folder_tasks",
+      "name": "Delete Task",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/tasks/TASK_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "folder_events",
+      "_type": "request_group",
+      "parentId": "wrk_taskflow",
+      "name": "Events"
+    },
+    {
+      "_id": "req_create_event",
+      "_type": "request",
+      "parentId": "folder_events",
+      "name": "Create Event",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/events",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Custom Event\",\n  \"description\": \"Manual event log\",\n  \"entityType\": \"Task\",\n  \"entityId\": \"TASK_ID\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_events",
+      "_type": "request",
+      "parentId": "folder_events",
+      "name": "Get All Events",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/events?page=1&limit=10",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_get_event",
+      "_type": "request",
+      "parentId": "folder_events",
+      "name": "Get Event by ID",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/events/EVENT_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    },
+    {
+      "_id": "req_update_event",
+      "_type": "request",
+      "parentId": "folder_events",
+      "name": "Update Event",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/events/EVENT_ID",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"description\": \"Updated event description\"\n}"
+      }
+    },
+    {
+      "_id": "req_delete_event",
+      "_type": "request",
+      "parentId": "folder_events",
+      "name": "Delete Event (Admin)",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/events/EVENT_ID",
+      "headers": [{ "name": "Authorization", "value": "Bearer {{ _.token }}" }]
+    }
+  ]
+}
