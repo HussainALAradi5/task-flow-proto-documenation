@@ -18,5 +18,7 @@
 ## Security Rules
 
 - Admin and Leader can create/update/delete tasks
-- Users see only tasks they created (Admin sees all)
-- Filter by project or milestone supported
+- `GET /tasks` - users see only tasks they created (Admin sees all)
+- `GET /tasks/project/:projectId` - users see only their tasks in project (Admin sees all)
+- `GET /tasks/milestone/:milestoneId` - users see only their tasks in milestone (Admin sees all)
+- `GET /tasks/:id` - any authenticated user can view any task by ID

@@ -17,4 +17,6 @@
 ## Security Rules
 
 - Admin and Leader can create/update/delete milestones
-- Users see only milestones they created (Admin sees all)
+- `GET /milestones` - users see only milestones they created (Admin sees all)
+- `GET /milestones/:id` - any authenticated user can view any milestone by ID
+- `GET /milestones/project/:projectId` - any authenticated user can view milestones by project

@@ -16,6 +16,8 @@
 ## Security Rules
 
 - Admin and Leader can create projects
-- Users see only projects they created (Admin sees all)
+- `GET /projects` - users see only projects they created (Admin sees all)
+- `GET /projects/:id` - any authenticated user can view any project by ID
+- `PATCH /projects/:id` - Admin and Leader only
 - Only Admin can delete projects
 - Creating a project auto-promotes Member to Leader

@@ -35,7 +35,7 @@ Each entity has 5 documentation files: model, service, endpoints, enums, interfa
 
 | Entity | Model | Service | Endpoints | Enums | Interfaces |
 |--------|-------|---------|-----------|-------|------------|
-| BaseModel | [model](server-side/base-model/model.md) | [service](server-side/base-model/service.md) | - | - | - |
+| BaseModel | [model](server-side/base-model/model.md) | [service](server-side/base-model/service.md) | - | - | [interfaces](server-side/base-model/interfaces.md) |
 | User | [model](server-side/user/model.md) | [service](server-side/user/service.md) | [endpoints](server-side/user/endpoints.md) | [enums](server-side/user/enums.md) | [interfaces](server-side/user/interfaces.md) |
 | Team | [model](server-side/team/model.md) | [service](server-side/team/service.md) | [endpoints](server-side/team/endpoints.md) | [enums](server-side/team/enums.md) | [interfaces](server-side/team/interfaces.md) |
 | Project | [model](server-side/project/model.md) | [service](server-side/project/service.md) | [endpoints](server-side/project/endpoints.md) | [enums](server-side/project/enums.md) | [interfaces](server-side/project/interfaces.md) |

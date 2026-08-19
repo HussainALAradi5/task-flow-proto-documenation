@@ -16,6 +16,7 @@
 
 - Admin and Leader can create comments
 - Any authenticated user can view comments on a task
+- `GET /comments/task/:taskId` - any authenticated user can view
 - Creator can edit their own comments
 - Admin or Leader can edit any comment
 - Creator can soft delete their own comments

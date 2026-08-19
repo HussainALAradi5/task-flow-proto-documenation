@@ -16,5 +16,7 @@
 ## Security Rules
 
 - Admin and Leader can create teams
-- Users see only teams they created (Admin sees all)
+- `GET /teams` - users see only teams they created (Admin sees all)
+- `GET /teams/:id` - any authenticated user can view any team by ID
+- `PATCH /teams/:id` - Admin and Leader only
 - Only Admin can delete teams

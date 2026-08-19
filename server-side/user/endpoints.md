@@ -25,6 +25,9 @@
 ## Security Rules
 
 - User can only view/edit their own profile
-- Only Admin can view/edit/delete other users
+- `GET /users` - Admin only, lists all users
+- `GET /users/:id` - Admin only
+- `PATCH /users/:id` - Admin only
+- `DELETE /users/:id` - Admin only
 - Only Admin can change roles
 - Passwords never returned in responses
