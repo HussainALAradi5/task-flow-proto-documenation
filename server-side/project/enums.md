@@ -8,4 +8,4 @@ No entity-specific enums for Project.
 
 | Enum | Location | Usage |
 |------|----------|-------|
-| `UserRole` | `src/enums/user/UserRole.ts` | Restrict create/update to Admin, Leader |
+| `UserRole` | `src/enums/user/UserRole.ts` | Restrict updates to Admin or Leader; creating a project promotes a Member |

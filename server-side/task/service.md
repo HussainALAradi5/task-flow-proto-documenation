@@ -9,7 +9,7 @@
 class TaskServiceClass extends BaseService<ITask> {
   constructor();
   async create(data: Partial<ITask>): Promise<ITask>;
-  async update(id: string, data: Partial<ITask>): Promise<ITask | null>;
+  async update(id: string, data: Partial<ITask>, updatedBy?: string): Promise<ITask | null>;
   async softDelete(id: string): Promise<ITask | null>;
   buildProjectFilter(projectId: string): QueryFilter<ITask>;
   buildProjectUserFilter(projectId: string, userId: string): QueryFilter<ITask>;
@@ -22,7 +22,7 @@ class TaskServiceClass extends BaseService<ITask> {
 
 | Method | Logic |
 |--------|-------|
-| `create` | Create task, log event "Task created" |
+| `create` | Reject a duplicate title in the same project, create task, log event "Task created" |
 | `update` | Update task, log event "Task updated" |
 | `softDelete` | Set isActive: false, log event "Task deactivated" |
 | `buildProjectFilter` | Build query filter by projectId |

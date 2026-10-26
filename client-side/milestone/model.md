@@ -1,7 +1,7 @@
 # Milestone Model (Client)
 
 ## Location
-`src/app/core/models/milestone.model.ts`
+`src/app/core/interfaces/milestone.interface.ts`
 
 ## Interface
 ```typescript

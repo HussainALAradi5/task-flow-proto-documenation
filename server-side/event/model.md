@@ -13,6 +13,7 @@ const eventSchema = new Schema<IEvent>({
   entityType: createMongooseEnum(EntityType),
   entityId: { type: Schema.Types.ObjectId, required: true },
 }, { timestamps: true });
+eventSchema.index({ entityType: 1, entityId: 1, createdAt: -1 });
 ```
 
 ## Fields

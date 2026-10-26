@@ -10,6 +10,7 @@ const teamSchema = new Schema<ITeam>({
   ...baseSchemaFields,
   name: { type: String, required: true },
   description: { type: String, default: '' },
+  members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   isActive: { type: Boolean, default: true },
 }, { timestamps: true });
 ```
@@ -23,4 +24,5 @@ const teamSchema = new Schema<ITeam>({
 | updatedBy | ObjectId | No | `null` | Ref → User |
 | name | String | Yes | - | Team name |
 | description | String | No | `""` | Description |
+| members | ObjectId[] | No | `[]` | Explicit User members who can read the team |
 | isActive | Boolean | No | `true` | Soft delete flag |

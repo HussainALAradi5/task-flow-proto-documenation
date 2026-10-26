@@ -15,6 +15,7 @@ class EventServiceClass extends BaseService<IEvent> {
     description?: string,
     userId?: string
   ): Promise<IEvent>;
+  async getProjectHistory(projectId: string, params: PaginationParams): Promise<PaginatedResult<IEvent>>;
 }
 ```
 
@@ -22,7 +23,8 @@ class EventServiceClass extends BaseService<IEvent> {
 
 | Method | Logic |
 |--------|-------|
-| `logEvent` | Create audit log entry with entity reference |
+| `logEvent` | Create audit log entry with entity reference and acting user |
+| `getProjectHistory` | Collect project, task, and milestone events for one board; order by `createdAt` then `_id` descending and paginate |
 
 ## Auto-Logged Events
 
@@ -39,6 +41,7 @@ class EventServiceClass extends BaseService<IEvent> {
 | Project deactivated | `Project deactivated` | Project |
 | Task created | `Task created` | Task |
 | Task updated | `Task updated` | Task |
+| Task status changed | `Task moved` with old and new status | Task |
 | Task deactivated | `Task deactivated` | Task |
 | Milestone created | `Milestone created` | Milestone |
 | Milestone updated | `Milestone updated` | Milestone |
@@ -47,16 +50,6 @@ class EventServiceClass extends BaseService<IEvent> {
 | Comment updated | `Comment updated` | Task |
 | Comment deleted | `Comment deleted` | Task |
 
-## Validation
+## Write access
 
-Handled by Zod schemas in `src/validations/event.schema.ts`:
-
-```typescript
-createEventSchema = { body: {
-  title: string(1-200),
-  description?: string,
-  entityType: 'User' | 'Team' | 'Task' | 'Project' | 'Milestone',
-  entityId: string
-}}
-updateEventSchema = { body: { title?: string(1-200), description?: string }, params: { id: string } }
-```
+Only backend services call `logEvent`. The event API exposes GET routes and has no client write schema.

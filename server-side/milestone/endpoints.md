@@ -18,5 +18,5 @@
 
 - Admin and Leader can create/update/delete milestones
 - `GET /milestones` - users see only milestones they created (Admin sees all)
-- `GET /milestones/:id` - any authenticated user can view any milestone by ID
-- `GET /milestones/project/:projectId` - any authenticated user can view milestones by project
+- `GET /milestones/:id` - creator or Admin only
+- `GET /milestones/project/:projectId` - all milestones in a board accessible to the caller; outsiders receive 404

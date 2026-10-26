@@ -1,16 +1,3 @@
-# Task Service (Client)
+# Task API (Client)
 
-## Location
-`src/app/features/board/board.service.ts`
-
-## Methods
-
-| Method | Signature | Description |
-|--------|-----------|-------------|
-| `getTasks` | `(page, limit): Observable<PaginatedResult<Task>>` | Get user's tasks |
-| `getTasksByProject` | `(projectId, page, limit): Observable<PaginatedResult<Task>>` | Get tasks by project |
-| `getTasksByMilestone` | `(milestoneId, page, limit): Observable<PaginatedResult<Task>>` | Get tasks by milestone |
-| `getTask` | `(id): Observable<Task>` | Get task by ID |
-| `createTask` | `(data): Observable<Task>` | Create task |
-| `updateTask` | `(id, data): Observable<Task>` | Update task |
-| `deleteTask` | `(id): Observable<void>` | Delete task |
+`src/app/features/board/services/task.ts` wraps the shared `ApiService` with typed `create`, `update`, `move`, and `delete` calls for cards. The project detail component uses `ApiService.getAllPages<Task>` to load all pages of `tasks/project/:projectId` for its local Kanban filters. A successful card write refreshes both the cards and the activity panel. Task writes return `ApiResponse<Task>`; delete returns a success message.

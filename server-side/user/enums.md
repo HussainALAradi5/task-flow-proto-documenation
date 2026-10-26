@@ -19,7 +19,7 @@ export enum UserRole {
 |-----|-------|-------------|
 | ADMIN | `Admin` | Full system access, bypasses all restrictions |
 | LEADER | `Leader` | Can manage team projects/tasks |
-| MEMBER | `Member` | Default role, view/edit assigned tasks only |
+| MEMBER | `Member` | Default role; may create a project and then becomes Leader. Task access is scoped to records created by the user. |
 
 ## Default
 - New users get `MEMBER` on signup

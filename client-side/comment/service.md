@@ -1,13 +1,3 @@
-# Comment Service (Client)
+# Comment API (Client)
 
-## Location
-`src/app/features/board/board.service.ts`
-
-## Methods
-
-| Method | Signature | Description |
-|--------|-----------|-------------|
-| `getCommentsByTask` | `(taskId, page, limit): Observable<PaginatedResult<Comment>>` | Get comments by task |
-| `createComment` | `(data): Observable<Comment>` | Create comment |
-| `updateComment` | `(id, data): Observable<Comment>` | Update comment |
-| `deleteComment` | `(id): Observable<void>` | Delete comment |
+`src/app/features/board/services/comment.ts` provides typed create and delete calls through `ApiService`. The project detail component uses `ApiService.getAllPages<Comment>` on `comments/task/:taskId`, so it can show every comment. Successful writes refresh comments and board activity. The UI exposes comment creation to board members and deletion to the comment author or Admin; it does not expose editing.

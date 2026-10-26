@@ -1,7 +1,7 @@
 # User Model (Client)
 
 ## Location
-`src/app/core/models/user.model.ts`
+`src/app/core/interfaces/user.interface.ts`
 
 ## Interface
 ```typescript

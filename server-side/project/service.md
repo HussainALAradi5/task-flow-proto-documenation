@@ -27,6 +27,6 @@ class ProjectServiceClass extends BaseService<IProject> {
 Handled by Zod schemas in `src/validations/project.schema.ts`:
 
 ```typescript
-createProjectSchema = { body: { title: string(1-200), description?: string, teamId?: string } }
-updateProjectSchema = { body: { title?: string(1-200), description?: string, teamId?: string }, params: { id: string } }
+createProjectSchema = { body: { title: string(1-200), description?: string, teamId?: ObjectIdString } }
+updateProjectSchema = { body: { title?: string(1-200), description?: string, teamId?: ObjectIdString }, params: { id: string } }
 ```

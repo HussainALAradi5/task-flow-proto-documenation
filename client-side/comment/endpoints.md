@@ -2,9 +2,8 @@
 
 ## API Mapping
 
-| Service Method | HTTP | Endpoint | Body |
+| UI call through ApiService | HTTP | Endpoint | Body |
 |----------------|------|----------|------|
-| `getCommentsByTask` | GET | `/comments/task/:taskId?page=&limit=` | - |
-| `createComment` | POST | `/comments` | `{ content, taskId }` |
-| `updateComment` | PATCH | `/comments/:id` | `{ content }` |
-| `deleteComment` | DELETE | `/comments/:id` | - |
+| `getAllPages('comments/task/' + taskId)` | GET | `/api/comments/task/:taskId?page=&limit=` | - |
+| `create('comments', data)` | POST | `/api/comments` | `{ content, taskId }` |
+| `delete('comments', id)` | DELETE | `/api/comments/:id` | - |

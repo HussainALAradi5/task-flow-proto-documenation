@@ -1,26 +1,5 @@
-# Event Model (Client)
+# Activity event model in the client
 
-## Location
-`src/app/core/models/event.model.ts`
+Location: `src/app/core/interfaces/event.interface.ts`.
 
-## Interface
-```typescript
-interface Event {
-  _id: string;
-  title: string;
-  description?: string;
-  entityType: EntityType;
-  entityId: string;
-  createdBy?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-enum EntityType {
-  USER = 'User',
-  TEAM = 'Team',
-  TASK = 'Task',
-  PROJECT = 'Project',
-  MILESTONE = 'Milestone'
-}
-```
+`ActivityEvent` has `_id`, `title`, optional `description`, `entityType`, `entityId`, optional `createdBy` (user ID or populated user with `_id`, `userName`, `email`), and ISO `createdAt`. It is used by the activity panel on the project detail page. The response is wrapped in the standard `PaginatedResult<ActivityEvent>` envelope.

@@ -2,12 +2,9 @@
 
 ## API Mapping
 
-| Service Method | HTTP | Endpoint | Body |
+| UI call through ApiService | HTTP | Endpoint | Body |
 |----------------|------|----------|------|
-| `getTasks` | GET | `/tasks?page=&limit=` | - |
-| `getTasksByProject` | GET | `/tasks/project/:projectId?page=&limit=` | - |
-| `getTasksByMilestone` | GET | `/tasks/milestone/:milestoneId?page=&limit=` | - |
-| `getTask` | GET | `/tasks/:id` | - |
-| `createTask` | POST | `/tasks` | `{ title, description?, status?, priority?, projectId, milestoneId?, assignTo? }` |
-| `updateTask` | PATCH | `/tasks/:id` | `{ title?, description?, status?, priority?, milestoneId?, assignTo? }` |
-| `deleteTask` | DELETE | `/tasks/:id` | - |
+| `getAllPages('tasks/project/' + projectId)` | GET | `/api/tasks/project/:projectId?page=&limit=` | - |
+| `create('tasks', data)` | POST | `/api/tasks` | `{ title, description?, status?, priority?, projectId, milestoneId?, dates? }` |
+| `update('tasks', id, data)` | PATCH | `/api/tasks/:id` | Task fields, status, priority, milestone, dates |
+| `delete('tasks', id)` | DELETE | `/api/tasks/:id` | - |

@@ -10,13 +10,13 @@ TaskFlow Proto enables teams to organize projects into boards, tasks, and milest
 
 | Layer | Technology | Version |
 |-------|-----------|---------|
-| Frontend | Angular | 21.2.0 |
-| CSS | Tailwind CSS | 4.1.12 |
+| Frontend | Angular | 21.2.25 |
+| CSS | Tailwind CSS | 4.3.3 |
 | Backend | Express.js | 5.2.1 |
-| Runtime | Node.js | TypeScript 7.0.2 |
+| Runtime | Node.js LTS | TypeScript 7.0.2 on the server |
 | Database | MongoDB + Mongoose | 9.9.1 |
 | Auth | JWT (jsonwebtoken) | 9.0.3 |
-| Validation | Zod | 4.4.3 |
+| Validation | Zod | 4.6.7 |
 
 ## Project Structure
 
@@ -28,6 +28,8 @@ task-flow-proto/
 ```
 
 ## Documentation
+
+See [client and server contract verification](contract-verification.md) for the routes used by the current UI, permission checks, and remaining runtime verification.
 
 ### Server-Side (Express.js + MongoDB)
 
@@ -55,8 +57,8 @@ Each entity has service, model, and endpoints documentation.
 | [Project](client-side/project/service.md) | CRUD operations | TypeScript interfaces | API mapping |
 | [Task](client-side/task/service.md) | CRUD + filtering | TypeScript interfaces | API mapping |
 | [Milestone](client-side/milestone/service.md) | CRUD operations | TypeScript interfaces | API mapping |
-| [Comment](client-side/comment/service.md) | CRUD operations | TypeScript interfaces | API mapping |
-| [Event](client-side/event/service.md) | Audit log | TypeScript interfaces | API mapping |
+| [Comment](client-side/comment/service.md) | List, create, delete | TypeScript interfaces | API mapping |
+| [Event](client-side/event/service.md) | Board activity history | TypeScript interface | Paginated project history |
 
 ## Collections
 
@@ -66,17 +68,39 @@ Each entity has service, model, and endpoints documentation.
 
 ## Quick Start
 
-```bash
-# Backend
-cd task-flow-proto-server-side
-npm install
+Keep the [client](https://github.com/HussainALAradi5/task-flow-proto-client-side), [server](https://github.com/HussainALAradi5/task-flow-proto-server-side), and this documentation repository side by side. Use Node.js 24 LTS and a reachable MongoDB instance. From the server repository, create `.env` from `.env.example` and set `MONGO_URI` and a unique `JWT_SECRET`. Keep port 5000 and the client origin at `http://localhost:4200` for the default development configuration.
+
+```powershell
+# Terminal 1, from the server repository
+npm ci
+Copy-Item .env.example .env
+# Edit .env, then start the API.
 npm run dev
 
-# Frontend
-cd task-flow-proto-client-side
-npm install
+# Terminal 2, from the client repository
+npm ci
 npm start
 ```
+
+### Demo seed
+
+From the server repository, set `DEMO_SEED=1` and a unique `DEMO_SEED_PASSWORD` of at least 12 characters, then run `npm run seed:demo`. The seed reads `MONGO_URI` from `.env`. Use a dedicated demo database. Existing account passwords are preserved.
+
+| Login email | Role | Group and access |
+| --- | --- | --- |
+| `demo-admin@taskflow.local` | Admin | Owns Operations Group; can see all boards |
+| `demo@taskflow.local` | Leader | Owns Product Studio and its three boards |
+| `demo-member@taskflow.local` | Member | Belongs to Operations Group and its Operations Board; cannot see Product Studio boards |
+
+The Operations Board has an Admin-created card so the Member can try moving and commenting on another user's card. Website Refresh has four cards, a milestone, a comment, and ordered activity history.
+
+### Verification and screenshots
+
+Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) was captured with mocked API responses matching the seed because MongoDB was unavailable locally. The browser drag check moved a card between columns. The live database seed and full API flow remain unverified in this workspace.
+
+### Access rules
+
+All API paths have the `/api` prefix. Signup and login are public. A new Member may create a project and is promoted to Leader. Project and team reads allow owners, explicit members, or Admin. Board members can work on cards and comments on their board. Team and milestone writes require Leader or Admin; non-Admin updates also require record ownership. Events are read-only to clients. Media creation is not exposed; media listing is scoped to its creator. See each endpoint page for paths and validation.
 
 ## License
 

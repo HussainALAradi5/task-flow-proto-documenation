@@ -1,29 +1,5 @@
-# Project Model (Client)
+# Project model in the client
 
-## Location
-`src/app/core/models/project.model.ts`
+Location: `src/app/core/interfaces/project.interface.ts`.
 
-## Interface
-```typescript
-interface Project {
-  _id: string;
-  title: string;
-  description?: string;
-  teamId?: string;
-  createdBy?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface CreateProjectRequest {
-  title: string;
-  description?: string;
-  teamId?: string;
-}
-
-interface UpdateProjectRequest {
-  title?: string;
-  description?: string;
-  teamId?: string;
-}
-```
+`Project` extends `BaseEntity` with `title`, optional `description`, optional `teamId`, and optional `members`. A member is an ID or populated user object. The board list is paginated. Project creation sends title, description, and optional team ID; the server copies the team's members into the board on creation.

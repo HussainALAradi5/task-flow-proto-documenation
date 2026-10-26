@@ -1,7 +1,7 @@
 # User Service (Client)
 
 ## Location
-`src/app/core/auth/auth.service.ts`
+`src/app/core/services/auth.service.ts`
 
 ## Methods
 
@@ -9,11 +9,11 @@
 |--------|-----------|-------------|
 | `signup` | `(data: SignupRequest): Observable<AuthResponse>` | Register new user |
 | `login` | `(data: LoginRequest): Observable<AuthResponse>` | Authenticate user |
-| `getProfile` | `(): Observable<User>` | Get current user |
-| `updateProfile` | `(data: UpdateProfileRequest): Observable<User>` | Update own profile |
+| `getProfile` | `(): Observable<{ status: string; data: User }>` | Get current user |
+| `updateProfile` | `(data: Partial<User>): Observable<{ status: string; data: User }>` | Update own profile |
 | `logout` | `(): void` | Clear token, navigate to login |
 | `getToken` | `(): string \| null` | Get stored JWT |
-| `isLoggedIn` | `(): boolean` | Check if authenticated |
+| `isLoggedIn` | `Signal<boolean>` | Check whether a profile is loaded |
 
 ## Models
 ```typescript
@@ -25,7 +25,7 @@ interface SignupRequest {
 }
 
 interface LoginRequest {
-  email: string;
+  identifier: string;
   password: string;
 }
 

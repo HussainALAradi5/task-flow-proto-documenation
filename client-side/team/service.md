@@ -1,14 +1,3 @@
-# Team Service (Client)
+# Team API (Client)
 
-## Location
-`src/app/features/team/team.service.ts`
-
-## Methods
-
-| Method | Signature | Description |
-|--------|-----------|-------------|
-| `getTeams` | `(page, limit): Observable<PaginatedResult<Team>>` | Get user's teams |
-| `getTeam` | `(id): Observable<Team>` | Get team by ID |
-| `createTeam` | `(data): Observable<Team>` | Create team |
-| `updateTeam` | `(id, data): Observable<Team>` | Update team |
-| `deleteTeam` | `(id): Observable<void>` | Delete team |
+`src/app/features/team/services/team.ts` wraps `ApiService` for paginated team listing, create, update, and delete. The team component uses this typed service and shows create/edit controls to Leaders or Admins, while the server enforces ownership on writes. Member users can read teams they explicitly belong to.

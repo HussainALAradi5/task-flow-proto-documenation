@@ -2,10 +2,10 @@
 
 ## API Mapping
 
-| Service Method | HTTP | Endpoint | Body |
+| UI call through ApiService | HTTP | Endpoint | Body |
 |----------------|------|----------|------|
-| `getProjects` | GET | `/projects?page=&limit=` | - |
-| `getProject` | GET | `/projects/:id` | - |
-| `createProject` | POST | `/projects` | `{ title, description?, teamId? }` |
-| `updateProject` | PATCH | `/projects/:id` | `{ title?, description?, teamId? }` |
-| `deleteProject` | DELETE | `/projects/:id` | - |
+| `getAll('projects')` | GET | `/api/projects?page=&limit=` | - |
+| `getById('projects/slug', slug)` | GET | `/api/projects/slug/:slug` | - |
+| `create('projects', data)` | POST | `/api/projects` | `{ title, description? }` |
+| `update('projects', id, data)` | PATCH | `/api/projects/:id` | `{ title?, description? }` |
+| `delete('projects', id)` | DELETE | `/api/projects/:id` | - |

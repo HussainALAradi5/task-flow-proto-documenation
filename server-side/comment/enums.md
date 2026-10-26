@@ -8,5 +8,5 @@ No entity-specific enums for Comment.
 
 | Enum | Location | Usage |
 |------|----------|-------|
-| `UserRole` | `src/enums/user/UserRole.ts` | Restrict create to Admin, Leader |
+| `UserRole` | `src/enums/user/UserRole.ts` | Admin may access any task comments; otherwise task and comment creator checks apply |
 | `EntityType` | `src/enums/EntityType.ts` | Log events as TASK type |

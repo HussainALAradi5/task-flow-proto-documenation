@@ -1,7 +1,7 @@
 # Comment Model (Client)
 
 ## Location
-`src/app/core/models/comment.model.ts`
+`src/app/core/interfaces/comment.interface.ts`
 
 ## Interface
 ```typescript

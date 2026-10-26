@@ -1,11 +1,7 @@
-# Event Endpoints (Client)
+# Event endpoints used by the client
 
-## API Mapping
+| Method | Path | Request | Response |
+| --- | --- | --- | --- |
+| GET | `/api/events/project/:projectId` | `page` and `limit` query parameters; bearer token | `{ status: 'success', data: ActivityEvent[], pagination }` |
 
-| Service Method | HTTP | Endpoint | Body |
-|----------------|------|----------|------|
-| `getEvents` | GET | `/events?page=&limit=` | - |
-| `getEvent` | GET | `/events/:id` | - |
-| `createEvent` | POST | `/events` | `{ title, description?, entityType, entityId }` |
-| `updateEvent` | PATCH | `/events/:id` | `{ title?, description? }` |
-| `deleteEvent` | DELETE | `/events/:id` | - |
+A user outside the board receives 404. Clients cannot create, update, or delete activity events directly.

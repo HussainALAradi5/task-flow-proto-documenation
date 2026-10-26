@@ -1,7 +1,7 @@
 # Task Model (Client)
 
 ## Location
-`src/app/core/models/task.model.ts`
+`src/app/core/interfaces/task.interface.ts`
 
 ## Interface
 ```typescript
