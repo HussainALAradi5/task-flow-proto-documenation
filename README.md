@@ -2,6 +2,10 @@
 
 A Trello-like task management application built with the MEAN stack (MongoDB, Express.js, Angular, Node.js).
 
+## Live demo
+
+Use the [TaskFlow client](https://taskflow-proto-client.onrender.com) to test the app. The [API health endpoint](https://taskflow-proto-api.onrender.com/) shows whether the free server is awake; the first request after inactivity may take about a minute. The dedicated Atlas Free database has the [three seeded roles](#demo-seed). Ask the project owner for the shared demo password; the Admin credential is not published in Git. Setup details are in the [free deployment guide](deploy-free-render.md).
+
 ## Overview
 
 TaskFlow Proto enables teams to organize projects into boards, tasks, and milestones with role-based access control. Inspired by Trello's simplicity, it provides a clean interface for managing workflows across teams.
@@ -68,6 +72,8 @@ Each entity has service, model, and endpoints documentation.
 
 ## Quick Start
 
+To put a demo online using free hosting, follow the [Render and MongoDB Atlas deployment guide](deploy-free-render.md).
+
 Keep the [client](https://github.com/HussainALAradi5/task-flow-proto-client-side), [server](https://github.com/HussainALAradi5/task-flow-proto-server-side), and this documentation repository side by side. Use Node.js 24 LTS and a reachable MongoDB instance. From the server repository, create `.env` from `.env.example` and set `MONGO_URI` and a unique `JWT_SECRET`. Keep port 5000 and the client origin at `http://localhost:4200` for the default development configuration.
 
 ```powershell
@@ -96,7 +102,7 @@ The Operations Board has an Admin-created card so the Member can try moving and 
 
 ### Verification and screenshots
 
-Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) includes mocked UI coverage and three images captured from a live client/API against an isolated temporary MongoDB instance. The seed ran twice successfully; Admin, Leader, and Member logins, board visibility, Member card movement, comments, and activity history passed. The configured deployment database was not used or verified.
+Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) shows all three roles against a live client/API and isolated temporary MongoDB instance. The seed ran twice successfully; Admin, Leader, and Member logins, board visibility, Member card movement, comments, and activity history passed. The configured deployment database was not used or verified.
 
 ### Access rules
 
