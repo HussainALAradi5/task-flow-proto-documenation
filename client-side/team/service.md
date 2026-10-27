@@ -1,3 +1,3 @@
 # Team API (Client)
 
-`src/app/features/team/services/team.ts` wraps `ApiService` for paginated team listing, create, update, and delete. The team component uses this typed service and shows create/edit controls to Leaders or Admins, while the server enforces ownership on writes. Member users can read teams they explicitly belong to.
+`src/app/features/team/services/team.ts` wraps `ApiService` for paginated team listing, create, update, delete, invitations, and member removal. Team owners or Admins invite an existing account by email. The recipient sees a pending count in the header and can accept or decline on the Teams page. Membership and access to that team's active boards are added only after acceptance. Member users can read teams they explicitly belong to.

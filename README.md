@@ -10,6 +10,8 @@ Use the [TaskFlow client](https://taskflow-proto-client.onrender.com) to test th
 
 TaskFlow Proto enables teams to organize projects into boards, tasks, and milestones with role-based access control. Inspired by Trello's simplicity, it provides a clean interface for managing workflows across teams.
 
+See the [Trello-style workflow review](trello-workflow-review.md) for implemented collaboration, invitation, discussion, date rules, and remaining limits.
+
 ## Tech Stack
 
 | Layer | Technology | Version |
@@ -102,11 +104,11 @@ The Operations Board has an Admin-created card so the Member can try moving and 
 
 ### Verification and screenshots
 
-Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) shows all three roles against a live client/API and isolated temporary MongoDB instance. The seed ran twice successfully; Admin, Leader, and Member logins, board visibility, Member card movement, comments, and activity history passed. The configured deployment database was not used or verified.
+Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) shows all three roles against a live client/API and isolated temporary MongoDB instance. The seed ran twice successfully; Admin, Leader, and Member logins, board visibility, Member card movement, comments, and activity history passed. Invitation acceptance, role protection, date rejection, a GIF comment, and access revocation also passed against an isolated database. The configured Atlas demo database was seeded and its deployed API checked separately.
 
 ### Access rules
 
-All API paths have the `/api` prefix. Signup and login are public. A new Member may create a project and is promoted to Leader. Project and team reads allow owners, explicit members, or Admin. Board members can work on cards and comments on their board. Team and milestone writes require Leader or Admin; non-Admin updates also require record ownership. Events are read-only to clients. Media creation is not exposed; media listing is scoped to its creator. See each endpoint page for paths and validation.
+All API paths have the `/api` prefix. Signup and login are public. A new Member may create a project and is promoted to Leader. Project and team reads allow owners, explicit members, or Admin. Board members can work on cards and comments on their board. Team and milestone writes require Leader or Admin; non-Admin updates also require record ownership. Team invitations are accepted or declined in the recipient's account. Card comments can contain a small image or GIF. Events are read-only to clients. Media creation is not exposed; media listing is scoped to its creator. See each endpoint page for paths and validation.
 
 ## License
 

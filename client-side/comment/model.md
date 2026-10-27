@@ -8,6 +8,7 @@
 interface Comment {
   _id: string;
   content: string;
+  attachment?: string;
   taskId: string;
   createdBy?: string;
   createdAt: string;
@@ -16,6 +17,7 @@ interface Comment {
 
 interface CreateCommentRequest {
   content: string;
+  attachment?: string;
   taskId: string;
 }
 

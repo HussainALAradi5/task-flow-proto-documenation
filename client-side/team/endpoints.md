@@ -8,3 +8,7 @@
 | `create('teams', data)` | POST | `/api/teams` | `{ name, description? }` |
 | `update('teams', id, data)` | PATCH | `/api/teams/:id` | `{ name?, description? }` |
 | `delete('teams', id)` | DELETE | `/api/teams/:id` | - |
+| `addMember(id, email)` | POST | `/api/teams/:id/members` | `{ email }` creates invitation |
+| `pendingInvitations()` | GET | `/api/teams/invitations/pending` | - |
+| `respondToInvitation(id, decision)` | POST | `/api/teams/invitations/:id/respond` | `{ decision: 'accept' \| 'decline' }` |
+| `removeMember(id, userId)` | DELETE | `/api/teams/:id/members/:userId` | - |

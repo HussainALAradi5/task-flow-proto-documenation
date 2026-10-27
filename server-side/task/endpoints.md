@@ -22,3 +22,4 @@
 - `GET /tasks/project/:projectId` - board members see all cards in their board; outsiders receive 404
 - `GET /tasks/milestone/:milestoneId` - board members see all cards in the milestone; outsiders receive 404
 - `GET /tasks/:id` - creator or Admin only
+- Task dates use `YYYY-MM-DD` or `null`. Start, target, end, and delivery must be in that order when present, and none may precede the task creation day. Updates validate the merged existing and incoming timeline; invalid changes return 400.

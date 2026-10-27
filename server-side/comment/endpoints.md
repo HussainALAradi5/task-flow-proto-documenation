@@ -20,3 +20,4 @@
 - Creator can soft delete their own comments
 - Admin can soft delete any comment
 - The controller also checks current board access before editing or deleting a comment.
+- A new comment needs text or one `attachment` data URL. PNG, JPEG, GIF, and WebP are accepted only when their decoded file signature matches the declared type. The raw image limit is 500 KB. Image data lives in MongoDB so it survives Render free server restarts.
