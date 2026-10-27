@@ -96,7 +96,7 @@ The Operations Board has an Admin-created card so the Member can try moving and 
 
 ### Verification and screenshots
 
-Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) was captured with mocked API responses matching the seed because MongoDB was unavailable locally. The browser drag check moved a card between columns. The live database seed and full API flow remain unverified in this workspace.
+Run `npm run build` and `npm test` in each application repository. The client [screenshot gallery](https://github.com/HussainALAradi5/task-flow-proto-client-side#screenshots) includes mocked UI coverage and three images captured from a live client/API against an isolated temporary MongoDB instance. The seed ran twice successfully; Admin, Leader, and Member logins, board visibility, Member card movement, comments, and activity history passed. The configured deployment database was not used or verified.
 
 ### Access rules
 
