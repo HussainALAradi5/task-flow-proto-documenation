@@ -2,10 +2,10 @@
 
 ## Location
 
-No entity-specific enums for Team.
+`InvitationDecision` in `src/enums/InvitationDecision.ts` has `accept` and `decline` values for the invitation response contract.
 
 ## Shared Enums Used
 
 | Enum | Location | Usage |
 |------|----------|-------|
-| `UserRole` | `src/enums/user/UserRole.ts` | Restrict create/update to Admin, Leader |
+| `UserRole` | `src/enums/user/UserRole.ts` | Restrict team creation to Admin or Leader; existing creator owns later writes |
