@@ -7,7 +7,7 @@ This review compares TaskFlow's implemented collaboration flow with the requeste
 | Boards and cards | Projects are boards with To Do, In Progress, In Review, and Done columns. Cards can be moved by drag and drop or with the status control. |
 | Teams as workspaces | A Team groups boards. The owner can invite an existing account by email. The recipient sees a header badge and can accept or decline from Teams. Acceptance grants access to the team and its active boards. Removal revokes that inherited access. Team leader/member badges describe the person's role in that team; the profile badge describes their account role. |
 | Team boards and views | Teams show linked boards. Boards show distinct Personal board and Team board badges plus the team name. Projects can be filtered to All, My projects, or Team projects; board and team collections can be viewed as a grid or list. |
-| Team chat | The owner and accepted team members can post text and one small verified image or GIF. The drawer loads recent messages and older pages; it refreshes every 15 seconds while open. |
+| Team chat | The owner and accepted team members can post text and one small verified image, GIF, PDF, or text file. The composer supports drag and drop, an emoji picker, and `@` suggestions from accepted members. The server checks mentioned IDs against team membership and gives mentioned people a distinct notice. The drawer loads recent messages and older pages; it refreshes every 15 seconds while open. |
 | Inbox | A protected notification page lists invitation, team message, and activity notices with unread state, filters, pagination, and read actions. The header bell shows unread count. |
 | Sign in | Email is the primary identifier in the form and is matched without case sensitivity or surrounding spaces. Username and mobile remain supported. |
 | Card discussion | Board members can post chronological text comments or one small PNG, JPEG, GIF, or WebP image per comment. The API verifies file signatures and limits images to 500 KB. Comments and image data persist in MongoDB. |
@@ -20,7 +20,7 @@ This review compares TaskFlow's implemented collaboration flow with the requeste
 - Invitations are delivered inside TaskFlow to registered accounts. Email delivery needs a transactional email provider and verified sender domain, which are not configured on the free deployment.
 - Teams serve the organization/workspace role. Separate organization billing and administration are not implemented.
 - Public boards are not enabled. They would expose tasks, discussion, and attachments through anonymous routes, so this needs a separate privacy design and explicit visibility controls.
-- Images larger than 500 KB, file attachments, and external GIF search need object storage or a media provider. Render's free web server filesystem is temporary, so uploads are stored in the database within a small size limit.
+- Files larger than 500 KB, multiple files per message, and external GIF search need a separate storage/media design. This prototype stores one small verified file directly in the protected MongoDB message document; Render's temporary filesystem is not used.
 - This is a Trello-inspired prototype, not feature parity with Trello (for example, no checklists, automation, or board templates).
 
 ## Regression checks

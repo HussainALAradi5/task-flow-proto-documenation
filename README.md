@@ -12,7 +12,7 @@ TaskFlow Proto enables teams to organize projects into boards, tasks, and milest
 
 See the [Trello-style workflow review](trello-workflow-review.md) for implemented collaboration, invitation, discussion, date rules, and remaining limits.
 
-The current UI includes team chat, team boards, owner-only team management, team-specific leader/member badges, grid/list views, project scope filters, and an inbox with read/unread notifications. Use the bell in the header to open the inbox. The profile badge is the account role; a user can lead one team and join another as a team member. Sign in with email, username, or mobile, with email shown first in the form.
+The current UI includes team chat with small MongoDB-backed attachments, drag and drop, emoji, and validated member mentions; team boards; owner-only team management; team-specific leader/member badges; grid/list views; project scope filters; and an inbox with read/unread notifications. Use the bell in the header to open the inbox. The profile badge is the account role; a user can lead one team and join another as a team member. Sign in with email, username, or mobile, with email shown first in the form.
 
 ## Tech Stack
 
@@ -112,7 +112,7 @@ Run `npm run build` and `npm test` in each application repository. The client [s
 
 ### Access rules
 
-All API paths have the `/api` prefix. Signup and login are public. A new Member may create a project and is promoted to Leader. Project and team reads allow owners, explicit members, or Admin. Only a team creator can edit, delete, invite, or remove members. Accepted members and the creator can use team chat. Board members can work on cards and comments on their board. Team invitations are accepted or declined in the recipient's account. Card comments and team messages can contain a small verified image or GIF. Events are read-only to clients; notifications are private to their recipient and can be marked read. Media creation is not exposed; media listing is scoped to its creator. See each endpoint page for paths and validation.
+All API paths have the `/api` prefix. Signup and login are public. A new Member may create a project and is promoted to Leader. Project and team reads allow owners, explicit members, or Admin. Only a team creator can edit, delete, invite, or remove members. Accepted members and the creator can use team chat. Board members can work on cards and comments on their board. Team invitations are accepted or declined in the recipient's account. Card comments support small verified images or GIFs; team messages also support one small PDF or plain-text file and team-validated mentions. Events are read-only to clients; notifications are private to their recipient and can be marked read. Media creation is not exposed; media listing is scoped to its creator. See each endpoint page for paths and validation.
 
 ## License
 

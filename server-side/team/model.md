@@ -26,3 +26,7 @@ const teamSchema = new Schema<ITeam>({
 | description | String | No | `""` | Description |
 | members | ObjectId[] | No | `[]` | Explicit User members who can read the team |
 | isActive | Boolean | No | `true` | Soft delete flag |
+
+## Team message
+
+`src/models/team/TeamMessage.ts` stores `teamId` and `author` as User/Team references, text `content`, optional base64 data-URL `attachment`, optional safe `attachmentName`, `mentions` as User ObjectIds, and timestamps. The model indexes `(teamId, createdAt, _id)` for newest-first pagination. Existing messages without the newer optional fields remain readable; no migration is required. The API checks team membership before returning the message or attachment data.

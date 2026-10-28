@@ -13,4 +13,4 @@
 | `respondToInvitation(id, decision)` | POST | `/api/teams/invitations/:id/respond` | `{ decision: 'accept' \| 'decline' }` |
 | `removeMember(id, userId)` | DELETE | `/api/teams/:id/members/:userId` | - |
 | `getMessages(teamId, page)` | GET | `/api/teams/:id/messages?page=&limit=50` | - |
-| `sendMessage(teamId, content, attachment?)` | POST | `/api/teams/:id/messages` | `{ content, attachment? }` |
+| `sendMessage(teamId, body)` | POST | `/api/teams/:id/messages` | `SendTeamMessageRequest` with `content`, `mentions`, optional `attachment` data URL and `attachmentName` |
