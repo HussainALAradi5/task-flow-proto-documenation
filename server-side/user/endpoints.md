@@ -8,7 +8,7 @@
 | Method | Endpoint | Validation | Description |
 |--------|----------|------------|-------------|
 | `POST` | `/users/signup` | `signupSchema` | Register new user |
-| `POST` | `/users/login` | `loginSchema` | Authenticate user |
+| `POST` | `/users/login` | `loginSchema` | Authenticate with email, username, or mobile and password; email ignores case and surrounding spaces |
 
 ## Protected (Auth Required)
 
@@ -31,3 +31,4 @@
 - `DELETE /users/:id` - Admin only
 - Only Admin can change roles
 - Passwords never returned in responses
+- Email addresses are stored lowercase on signup/profile update. Existing mixed-case email records still match at login. Duplicate-email checks ignore case.

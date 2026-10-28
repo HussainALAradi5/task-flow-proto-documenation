@@ -12,7 +12,7 @@ TaskFlow Proto enables teams to organize projects into boards, tasks, and milest
 
 See the [Trello-style workflow review](trello-workflow-review.md) for implemented collaboration, invitation, discussion, date rules, and remaining limits.
 
-The current UI includes team chat, team boards, owner-only team management, grid/list views, project scope filters, and an inbox with read/unread notifications. Use the bell in the header to open the inbox.
+The current UI includes team chat, team boards, owner-only team management, team-specific leader/member badges, grid/list views, project scope filters, and an inbox with read/unread notifications. Use the bell in the header to open the inbox. The profile badge is the account role; a user can lead one team and join another as a team member. Sign in with email, username, or mobile, with email shown first in the form.
 
 ## Tech Stack
 

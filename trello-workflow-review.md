@@ -5,10 +5,11 @@ This review compares TaskFlow's implemented collaboration flow with the requeste
 | Workflow | Current implementation |
 | --- | --- |
 | Boards and cards | Projects are boards with To Do, In Progress, In Review, and Done columns. Cards can be moved by drag and drop or with the status control. |
-| Teams as workspaces | A Team groups boards. The owner can invite an existing account by email. The recipient sees a header badge and can accept or decline from Teams. Acceptance grants access to the team and its active boards. Removal revokes that inherited access. |
+| Teams as workspaces | A Team groups boards. The owner can invite an existing account by email. The recipient sees a header badge and can accept or decline from Teams. Acceptance grants access to the team and its active boards. Removal revokes that inherited access. Team leader/member badges describe the person's role in that team; the profile badge describes their account role. |
 | Team boards and views | Teams show linked boards. Boards show distinct Personal board and Team board badges plus the team name. Projects can be filtered to All, My projects, or Team projects; board and team collections can be viewed as a grid or list. |
 | Team chat | The owner and accepted team members can post text and one small verified image or GIF. The drawer loads recent messages and older pages; it refreshes every 15 seconds while open. |
 | Inbox | A protected notification page lists invitation, team message, and activity notices with unread state, filters, pagination, and read actions. The header bell shows unread count. |
+| Sign in | Email is the primary identifier in the form and is matched without case sensitivity or surrounding spaces. Username and mobile remain supported. |
 | Card discussion | Board members can post chronological text comments or one small PNG, JPEG, GIF, or WebP image per comment. The API verifies file signatures and limits images to 500 KB. Comments and image data persist in MongoDB. |
 | History | The board activity panel records server-side project, card, milestone, comment, and team actions; the client loads older pages. |
 | Dates | Task creation, start, target, end, and delivery dates must be chronological. Forms provide date minimums and show errors; the API enforces the same rule on create and update. |
